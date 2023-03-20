@@ -32,7 +32,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		//‡A‰æ–Ê‚É•\¦‚³‚ê‚½‚à‚Ì‚ğ‰Šú‰»
 		ClearDrawScreen();
 
-
 		//-----------------------------------------
 		//‚±‚±‚ÉƒQ[ƒ€‚Ì–{‘Ì‚ğ‘‚­‚±‚Æ‚É‚È‚é
 		//-----------------------------------------
