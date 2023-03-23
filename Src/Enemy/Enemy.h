@@ -13,14 +13,13 @@
 #define ENEMY_BULLET_GRAPH_Y   (2)	 // バレットの画像枚数(縦)
 #define ANIM_ENEMY_COUNT       (10)  // このカウント分待って次の画像へ
 
-static const char ENEMY_PATH[]        = "Data/Animation/AnimationDragonEnemy.png";
-static const char ENEMY_DAMAGE_PATH[] = "Data/Animation/AnimationDragonEnemy_damage.png";
-static const char ENEMY_BULLET_PATH[] = "Data/Animation/AnimationDragonEnemyBullet.png";
+static const char ENEMY_PATH[]        = "Data/Character/Enemy.png";
+static const char ENEMY_BULLET_PATH[] = "Data/Character/EnemyBullet.png";
 
 // エネミーの情報
 enum EnemyInfo {
-	ENEMY_INIT_X = 800, // 初期X座標
-	ENEMY_INIT_Y = 760, // 初期Y座標
+	ENEMY_INIT_X = 650, // 初期X座標
+	ENEMY_INIT_Y = 80, // 初期Y座標
 	ENEMY_H      = 128, // 縦幅
 	ENEMY_W      = 128, // 横幅
 	ENEMY_RADIUS = 64,  // 半径
@@ -35,8 +34,8 @@ enum {
 // エネミーバレットの情報
 enum GragonEnemyBulletInfo {
 	ENEMY_BULLET_MAX_NUM  = 100, // 最大数（ハンドルの数）
-	ENEMY_BULLET_INIT_X   = 800, // 初期X座標
-	ENEMY_BULLET_INIT_Y   = 700, // 初期Y座標
+	ENEMY_BULLET_INIT_X   = 650, // 初期X座標
+	ENEMY_BULLET_INIT_Y   = 20, // 初期Y座標
 	ENEMY_BULLET_H        = 24,  // 縦幅
 	ENEMY_BULLET_W        = 24,  // 横幅
 	ENEMY_BULLET_RADIUS   = 12,  // 半径
@@ -51,13 +50,7 @@ struct EnemyData {
 	int animCnt;                      // アニメーションの際に使用
 	int m_dir;					      // プレイヤーの向き
 	int hndl[ENEMY_GRAPH_NUM];        // マップチップの画像
-	int hndl_damage[ENEMY_GRAPH_NUM]; // マップチップの画像
-	int m_hp;                         // ヒットポイント
 	int bulletInterval;               // 発射間隔
-	bool isAlive;                     // 生存フラグ
-	bool isDamage;                    // ダメージフラグ
-	bool isSortie;                    // 出撃フラグ
-	bool isPrint;                     // セリフ
 }; extern EnemyData g_EnemyData;
 
 // エネミーバレットデータを管理する構造体
@@ -72,15 +65,19 @@ struct EnemyBulletData {
 //----------------------------------------------------
 
 // 初期化処理
-void InitAnimeEnemy();
+void InitEnemy();
+
 // 終了処理
-void FinAnimeEnemy();
+void FinEnemy();
+
 // エネミー画像の読込み
 void LoadEnemyGraph();
+
 // 更新処理
-void StepAnimeEnemy();
+void StepEnemy();
+
 // プレイヤーの描画
-void DrawAnimeEnemy();
+void DrawEnemy();
 
 // プレイヤー取得
 EnemyData* GetEnemyData();

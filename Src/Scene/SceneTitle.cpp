@@ -5,7 +5,7 @@
 #include "../Input/Input.h"
 
 // タイトル背景画像のパス
-#define BG_TITLE_PATH "Data/BackGround/BgTitle.png"
+#define BG_TITLE_PATH "Data/Background/BgTitle.png"
 
 // 効果音ファイルパス
 #define TITLE_BGM_PATH "Data/Sound/BGM/TitleBGM.mp3"
@@ -39,8 +39,8 @@ void InitTitle()
 //---------------------------------
 void StepTitle()
 {
-	// Enterキー押されたなら
-	if (IsKeyPush(KEY_INPUT_RETURN) == 1) {
+	// 左右同時押しされたなら
+	if (IsKeyPush(KEY_INPUT_LEFT) == 1 && IsKeyPush(KEY_INPUT_RIGHT) == 1) {
 		// プレイシーンへ移動
 		g_CurrentSceneID = SCENE_ID_FIN_TITLE;
 		// サウンドを止める
@@ -53,7 +53,8 @@ void StepTitle()
 //---------------------------------
 void DrawTitle()
 {
-
+	// タイトル背景画像の描画
+	DrawGraph(0, 0, bgTitleHandle, true);
 }
 
 //---------------------------------

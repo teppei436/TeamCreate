@@ -20,6 +20,9 @@ void ExitScore();
 // スコアを加算する
 void AddScore(int score);
 
+// スコアを減算する
+void SubScore(int score);
+
 // スコアを強制的にセットする
 void SetScore(int score);
 

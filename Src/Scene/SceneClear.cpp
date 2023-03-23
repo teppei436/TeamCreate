@@ -5,7 +5,7 @@
 #include "../Input/Input.h"
 
 // クリア背景画像のパス
-#define BG_CLEAR_PATH "Data/BackGround/BgClear.png"
+#define BG_CLEAR_PATH "Data/Background/BgClear.png"
 
 // BGMファイルパス
 #define CLEAR_BGM_PATH "Data/Sound/BGM/ClearBGM.mp3"
@@ -39,8 +39,8 @@ void InitClear()
 //---------------------------------
 void StepClear()
 {
-	// Enterキー押されたなら
-	if (IsKeyPush(KEY_INPUT_RETURN) == 1) {
+	// 左右同時押しされたなら
+	if (IsKeyPush(KEY_INPUT_LEFT) == 1 && IsKeyPush(KEY_INPUT_RIGHT) == 1) {
 		// プレイシーンへ移動
 		g_CurrentSceneID = SCENE_ID_FIN_CLEAR;
 		// サウンドを止める

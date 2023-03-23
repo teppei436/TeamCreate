@@ -9,25 +9,21 @@
 
 PlayerData g_playerData;
 
-// サウンド関連
-
 //---------------------------------
 //		初期化処理
 //---------------------------------
-void InitAnimePlayer()
+void InitPlayer()
 {
-	// SE読み込み
-
-	g_playerData.pos.x   = 640;
-	g_playerData.pos.y   = 500;
-	g_playerData.m_dir   = DIR_RIGHT_WALK;
+	g_playerData.pos.x   = PLAYER_INIT_X;
+	g_playerData.pos.y   = PLAYER_INIT_Y;
+	g_playerData.m_dir   = DIR_FRONT_PLAYER;
 	g_playerData.animCnt = 0;
 }
 
 //---------------------------------
 //		終了処理
 //---------------------------------
-void FinAnimePlayer()
+void FinPlayer()
 {
 	// 画像データの破棄
 	for (int i = 0; i < PLAYER_GRAPH_NUM; i++) {
@@ -36,10 +32,7 @@ void FinAnimePlayer()
 			g_playerData.hndl[i] = -1;
 		}
 	}
-
-	// 効果音破棄
 }
-
 
 //---------------------------------
 //		マップチップ画像の読込み
@@ -55,16 +48,27 @@ void LoadPlayerGraph()
 //---------------------------------
 //		更新処理
 //---------------------------------
-void StepAnimePlayer()
+void StepPlayer()
 {
+	g_playerData.m_dir = DIR_FRONT_PLAYER;
+
 	// キー入力による移動-------------------------
 	// 右移動
 	if (IsKeyDown(KEY_INPUT_RIGHT) == 1) {
-		g_playerData.m_dir = DIR_RIGHT_WALK;
+		g_playerData.m_dir = DIR_RIGHT_PLAYER;
 
 		// 通常スピード
 		g_playerData.pos.x += PLAYER_SPD;
 	}
+
+	// 左移動
+	if (IsKeyDown(KEY_INPUT_LEFT) == 1) {
+		g_playerData.m_dir = DIR_LEFT_PLAYER;
+
+		// 通常スピード
+		g_playerData.pos.x -= PLAYER_SPD;
+	}
+
 	//---------------------------------------------
 
 	// アニメーションのカウント更新
@@ -79,7 +83,7 @@ void StepAnimePlayer()
 //---------------------------------
 //		描画処理
 //---------------------------------
-void DrawAnimePlayer()
+void DrawPlayer()
 {
 	int animNum[] = { 0, 1, 2, 3 };
 	int animID = g_playerData.m_dir * PLAYER_GRAPH_X + animNum[g_playerData.animCnt / ANIM_COUNT];

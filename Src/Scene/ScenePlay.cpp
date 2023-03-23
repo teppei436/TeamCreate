@@ -1,6 +1,10 @@
 
 #include "DxLib.h"
 #include "../Effect/Effect.h"
+#include "../Enemy/Enemy.h"
+#include "../Judgment/Judgment.h"
+#include "../Person/Person.h"
+#include "../Player/Player.h"
 #include "Scene.h"
 #include "SceneClear.h"
 #include "SceneGameOver.h"
@@ -28,6 +32,14 @@ void InitPlay()
 	// 背景初期化
 	bgHandle = LoadGraph(BG_PATH);
 
+	InitEffect();
+	InitEnemy();
+	LoadEnemyGraph();
+	InitJudgment();
+	InitPerson();
+	LoadPersonGraph();
+	InitPlayer();
+	LoadPlayerGraph();
 	InitScore();
 	LoadScore();
 
@@ -46,6 +58,11 @@ void InitPlay()
 //---------------------------------
 void StepPlay()
 {
+	StepEffect();
+	StepEnemy();
+	StepJudgment();
+	StepPerson();
+	StepPlayer();
 	UpdateScore();
 
 	//==========================
@@ -53,9 +70,9 @@ void StepPlay()
 	bool isClear = false;
 
 	// クリアしたなら
-	/*if () {
+	if (0) {
 		isClear = true;
-	}*/
+	}
 
 	if (isClear) {
 		// クリアへ
@@ -70,9 +87,9 @@ void StepPlay()
 	bool isGameOver = false;
 
 	// プレイヤー死んだなら
-	/*if () {
+	if (!g_personData.isAlive) {
 		isGameOver = true;
-	}*/
+	}
 
 	if (isGameOver) {
 		// ゲームオーバーへ
@@ -88,9 +105,16 @@ void StepPlay()
 //---------------------------------
 void DrawPlay()
 {
-	// 背景が一番後ろ
+	// 背景が一番後ろに描画
 	DrawGraph(0, 0, bgHandle, true);
+	
+	DrawEnemy();
+	DrawPerson();
+	DrawPlayer();
 	DrawScore();
+
+	// エフェクトが一番手前に描画
+	DrawEffect();
 }
 
 //---------------------------------
@@ -98,6 +122,10 @@ void DrawPlay()
 //---------------------------------
 void FinPlay()
 {
+	FinEnemy();
+	FinJudgment();
+	FinPerson();
+	FinPlayer();
 	ExitScore();
 
 	// 効果音破棄
@@ -109,13 +137,13 @@ void FinPlay()
 		bgHandle = -1;
 	}
 
-	// もし〇〇ために後処理へ来たなら
-	//if () {
-	//	// ゲームオーバーへ
-	//	g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
-	//}
-	//else {
-	//	// クリアへ
-	//	g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
-	//}
+	 //もし死んだために後処理へ来たなら
+	if (!g_personData.isAlive) {
+		// ゲームオーバーへ
+		g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
+	}
+	else {
+		// クリアへ
+		g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
+	}
 }

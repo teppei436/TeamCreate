@@ -40,6 +40,12 @@
     <Filter Include="ソース ファイル\Math">
       <UniqueIdentifier>{02f88c4f-9c31-45ad-9285-531ed05fc78b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Person">
+      <UniqueIdentifier>{85c2c5fe-d9fc-4bd8-b071-16fd6e07cf55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Judgment">
+      <UniqueIdentifier>{3d4f5d6b-193a-46a6-a352-3a68636903e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Main.cpp">
@@ -77,6 +83,12 @@
     </ClCompile>
     <ClCompile Include="Src\Math\Math.cpp">
       <Filter>ソース ファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Person\Person.cpp">
+      <Filter>ソース ファイル\Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Judgment\Judgment.cpp">
+      <Filter>ソース ファイル\Judgment</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="Src\Math\Math.h">
       <Filter>ソース ファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Person\Person.h">
+      <Filter>ソース ファイル\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Judgment\Judgment.h">
+      <Filter>ソース ファイル\Judgment</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

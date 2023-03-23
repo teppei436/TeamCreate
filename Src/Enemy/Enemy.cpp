@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "../Effect/Effect.h"
 #include "../Math/Math.h"
+#include "../Person/Person.h"
 #include "../Player/Player.h"
 
 EnemyData       g_EnemyData;
@@ -14,23 +15,19 @@ int Enemy_move_pattern;
 //---------------------------------
 //		初期化処理
 //---------------------------------
-void InitAnimeEnemy()
+void InitEnemy()
 {
 	// エネミー初期化
 	g_EnemyData.pos.x          = ENEMY_INIT_X;
 	g_EnemyData.pos.y          = ENEMY_INIT_Y;
-	g_EnemyData.m_hp           = ENEMY_HP;
 	g_EnemyData.m_dir          = 0;
 	g_EnemyData.animCnt        = 0;
 	g_EnemyData.bulletInterval = 0;
-	g_EnemyData.isAlive        = true;
-	g_EnemyData.isSortie       = true;
-	g_EnemyData.isPrint        = false;
+
 
 	// エネミー画像初期化
 	for (int i = 0; i < ENEMY_GRAPH_NUM; i++) {
 		g_EnemyData.hndl[i] = -1;
-		g_EnemyData.hndl_damage[i] = -1;
 	}
 
 	// エネミーバレット画像初期化
@@ -48,7 +45,7 @@ void InitAnimeEnemy()
 //---------------------------------
 //		終了処理
 //---------------------------------
-void FinAnimeEnemy()
+void FinEnemy()
 {
 	// 画像の破棄
 	for (int i = 0; i < ENEMY_GRAPH_NUM; i++) {
@@ -86,7 +83,7 @@ void LoadEnemyGraph()
 //---------------------------------
 //		更新処理
 //---------------------------------
-void StepAnimeEnemy()
+void StepEnemy()
 {
 	// 弾の発射間隔を更新
 	g_EnemyData.bulletInterval++;
@@ -102,7 +99,7 @@ void StepAnimeEnemy()
 				VECTOR bullet_move = { 0 };
 
 				// ①エネミーからプレイヤーまでのベクトルを作成
-				bullet_move = VecCreate(g_EnemyData.pos, g_playerData.pos);
+				bullet_move = VecCreate(g_EnemyData.pos, g_personData.pos);
 
 				// ②作成したベクトルを正規化し、長さを1にする
 				bullet_move = VecNormalize(bullet_move);
@@ -136,25 +133,23 @@ void StepAnimeEnemy()
 
 	int EnemySpd = ENEMY_SPD;
 
-	if (g_EnemyData.isSortie == true) {
-		// エネミーの移動パターン
-		switch (Enemy_move_pattern) {
+	// エネミーの移動パターン
+	switch (Enemy_move_pattern) {
 
-		case 1:
+	case 1:
 
-			break;
+		break;
 
-		case 2:
+	case 2:
 
-			break;
+		break;
 
-		case 3:
+	case 3:
 
-			break;
+		break;
 
-		default:
-			break;
-		}
+	default:
+		break;
 	}
 
 	// アニメーションのカウント更新
@@ -167,25 +162,18 @@ void StepAnimeEnemy()
 //---------------------------------
 //		描画処理
 //---------------------------------
-void DrawAnimeEnemy()
+void DrawEnemy()
 {
 	// アニメーション
 	int animNum[] = { 0, 1, 2, 3 };
 	int animEnemyID = g_EnemyData.m_dir * ENEMY_GRAPH_X + animNum[g_EnemyData.animCnt / ANIM_ENEMY_COUNT];
 
-	// ドラゴンエネミーの描画
-	if (g_EnemyData.isAlive) {
-		if (g_EnemyData.isDamage) {
-			DrawRotaGraph((int)g_EnemyData.pos.x, (int)g_EnemyData.pos.y, 1.0, 0.0, g_EnemyData.hndl_damage[animEnemyID], TRUE);
-			g_EnemyData.isDamage = false;
-		}
-		else {
-			DrawRotaGraph((int)g_EnemyData.pos.x, (int)g_EnemyData.pos.y, 1.0, 0.0, g_EnemyData.hndl[animEnemyID], TRUE);
-		}
-		for (int index = 0; index < ENEMY_BULLET_MAX_NUM; index++) {
-			if (g_EnemyBulletData[index].isUse) {
-				DrawRotaGraph((int)g_EnemyBulletData[index].pos.x, (int)g_EnemyBulletData[index].pos.y, 1.0, 0.0, g_EnemyBulletData[index].hndl[animEnemyID], TRUE);
-			}
+	// エネミーの描画
+	DrawRotaGraph((int)g_EnemyData.pos.x, (int)g_EnemyData.pos.y, 1.0, 0.0, g_EnemyData.hndl[animEnemyID], TRUE);
+
+	for (int index = 0; index < ENEMY_BULLET_MAX_NUM; index++) {
+		if (g_EnemyBulletData[index].isUse) {
+			DrawRotaGraph((int)g_EnemyBulletData[index].pos.x, (int)g_EnemyBulletData[index].pos.y, 1.0, 0.0, g_EnemyBulletData[index].hndl[animEnemyID], TRUE);
 		}
 	}
 }

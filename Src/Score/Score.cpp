@@ -96,6 +96,13 @@ void AddScore(int score)
 	g_score.m_score += score;
 }
 
+//--------------------------------
+//		スコアを減算する
+//--------------------------------
+void SubScore(int score)
+{
+	g_score.m_score -= score;
+}
 
 //--------------------------------
 //		スコアを強制的にセットする

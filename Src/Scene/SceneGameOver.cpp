@@ -5,7 +5,7 @@
 #include "../Input/Input.h"
 
 // ゲームオーバー背景画像のパス
-#define BG_GAMEOVER_PATH "Data/BackGround/BgGameOver.png"
+#define BG_GAMEOVER_PATH "Data/Background/BgGameOver.png"
 
 // BGMファイルパス
 #define GAMEOVER_BGM_PATH "Data/Sound/BGM/GameOverBGM.mp3"
@@ -38,8 +38,8 @@ void InitGameOver()
 //---------------------------------
 void StepGameOver()
 {
-	// Enterキー押されたなら
-	if (IsKeyPush(KEY_INPUT_RETURN) == 1) {
+	// 左右同時押しされたなら
+	if (IsKeyPush(KEY_INPUT_LEFT) == 1 && IsKeyPush(KEY_INPUT_RIGHT) == 1) {
 		// クリア後処理へ
 		g_CurrentSceneID = SCENE_ID_FIN_GAMEOVER;
 		// サウンド
