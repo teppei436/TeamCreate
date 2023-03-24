@@ -1,5 +1,6 @@
 
 #include "DxLib.h"
+#include "../Common/Common.h"
 #include "../Effect/Effect.h"
 #include "../Enemy/Enemy.h"
 #include "../Judgment/Judgment.h"
@@ -19,7 +20,8 @@
 int PlayBGMSoundHndl = 0;
 
 // ”wŒiŠÖ˜A
-int bgHandle = 0;
+int bgHandle[2] = { 0 }; //”wŒi‰æ‘œƒnƒ“ƒhƒ‹
+int bgX[2] = { 0 };      //”wŒi‰æ‘œXÀ•W
 
 //---------------------------------
 //		‰Šú‰»ˆ—
@@ -30,8 +32,14 @@ void InitPlay()
 	PlayBGMSoundHndl = LoadSoundMem(PLAY_BGM_PATH);
 
 	// ”wŒi‰Šú‰»
-	bgHandle = LoadGraph(BG_PATH);
-
+	for (int i = 0; i < 2; i++)
+	{
+		bgHandle[i] = LoadGraph(BG_PATH);
+	}
+	//”wŒi‰ŠúÀ•Wİ’è
+	bgX[0] = 0;
+	bgX[1] = -WINDOW_WIDTH;
+	
 	InitEffect();
 	InitEnemy();
 	LoadEnemyGraph();
@@ -58,6 +66,27 @@ void InitPlay()
 //---------------------------------
 void StepPlay()
 {
+	//”wŒi‚ÌˆÚ“®ˆ—
+	for (int i = 0; i < 2; i++)
+	{
+		bgX[i] +=3;
+	}
+	//”wŒi‚ª‰æ–ÊŠO‚É‚Í‚İo‚µ‚½‚Ìˆ—
+	for (int i = 0; i < 2; i++)
+	{
+		//“Y‚¦š‚Ì‰æ‘œ‚ª‚Í‚İo‚½
+		if (bgX[i] > WINDOW_WIDTH)
+		{
+			//ã‚É–ß‚·‰æ‘œ‚Ì“Y‚¦š
+			int upIndex = i == 0 ? 1 : 0;
+			//‚à‚¤ˆê‚Â‚Ì‰æ‘œ‚æ‚èã‚É–ß‚·
+			bgX[i] = bgX[upIndex] - WINDOW_WIDTH;
+
+		}
+	}
+
+
+
 	StepEffect();
 	StepEnemy();
 	StepJudgment();
@@ -106,7 +135,11 @@ void StepPlay()
 void DrawPlay()
 {
 	// ”wŒi‚ªˆê”ÔŒã‚ë‚É•`‰æ
-	DrawGraph(0, 0, bgHandle, true);
+	for (int i = 0; i < 2; i++)
+	{
+		DrawGraph(bgX[i],0, bgHandle[i], true);
+	}
+	
 	
 	DrawEnemy();
 	DrawPerson();
@@ -132,10 +165,10 @@ void FinPlay()
 	DeleteSoundMem(PlayBGMSoundHndl);
 
 	// ”wŒi”jŠü
-	if (bgHandle == -1) {
-		DeleteGraph(bgHandle);
-		bgHandle = -1;
-	}
+	/*if (bgHandle[0] == -1) {
+		DeleteGraph(bgHandle[0]);
+		bgHandle[0] = -1;
+	}*/
 
 	 //‚à‚µ€‚ñ‚¾‚½‚ß‚ÉŒãˆ—‚Ö—ˆ‚½‚È‚ç
 	if (!g_personData.isAlive) {

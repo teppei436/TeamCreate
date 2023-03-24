@@ -4,9 +4,9 @@
 
 // 定義関連-------------------------------------------
 #define ENEMY_SIZE		       (128) // エネミーの縦横サイズ
-#define ENEMY_GRAPH_NUM	       (8)   // エネミーの画像枚数
-#define ENEMY_GRAPH_X	       (4)	 // エネミーの画像枚数(横)
-#define ENEMY_GRAPH_Y          (2)	 // エネミーの画像枚数(縦)
+#define ENEMY_GRAPH_NUM	       (15)  // エネミーの画像枚数
+#define ENEMY_GRAPH_X	       (5)	 // エネミーの画像枚数(横)
+#define ENEMY_GRAPH_Y          (3)	 // エネミーの画像枚数(縦)
 #define ENEMY_BULLET_SIZE      (24)  // バレットの縦横サイズ
 #define ENEMY_BULLET_GRAPH_NUM (8)   // バレットの画像枚数
 #define ENEMY_BULLET_GRAPH_X   (4)	 // バレットの画像枚数(横)
