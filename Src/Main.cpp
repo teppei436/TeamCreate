@@ -241,6 +241,6 @@ void CalcFPS()
 // FPS表示(デバッグ用)
 void DrawFPS()
 {
-	unsigned int color = GetColor(255, 30, 30);
-	DrawFormatString(1180, 700, color, "FPS[%.2f]", frameRateInfo.fps);
+	//unsigned int color = GetColor(255, 30, 30);
+	//DrawFormatString(1180, 700, color, "FPS[%.2f]", frameRateInfo.fps);
 }

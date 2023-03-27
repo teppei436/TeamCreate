@@ -44,7 +44,7 @@ void InitScore()
 //--------------------------------
 void LoadScore()
 {
-	LoadDivGraph("Data/Number/number16x32_01.png", NUMBER, 10, 1,
+	LoadDivGraph("Data/Number/number16x32_05.png", NUMBER, 10, 1,
 		NUMBER_SIZE_X, NUMBER_SIZE_Y, g_score.m_graphHndl);
 	g_score.m_soundHndl = LoadSoundMem("sound/se2.mp3");
 }

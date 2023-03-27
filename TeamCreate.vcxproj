@@ -142,6 +142,7 @@
     <ClCompile Include="Src\Collision\Collision.cpp" />
     <ClCompile Include="Src\Effect\Effect.cpp" />
     <ClCompile Include="Src\Enemy\Enemy.cpp" />
+    <ClCompile Include="Src\HUD\HUD.cpp" />
     <ClCompile Include="Src\Input\Input.cpp" />
     <ClCompile Include="Src\Judgment\Judgment.cpp" />
     <ClCompile Include="Src\Main.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Src\Common\Common.h" />
     <ClInclude Include="Src\Effect\Effect.h" />
     <ClInclude Include="Src\Enemy\Enemy.h" />
+    <ClInclude Include="Src\HUD\HUD.h" />
     <ClInclude Include="Src\Input\Input.h" />
     <ClInclude Include="Src\Judgment\Judgment.h" />
     <ClInclude Include="Src\Math\Math.h" />

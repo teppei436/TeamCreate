@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "SceneGameOver.h"
 #include "../Input/Input.h"
+#include "../Score/Score.h"
 
 // ゲームオーバー背景画像のパス
 #define BG_GAMEOVER_PATH "Data/Background/BgGameOver.png"
@@ -61,6 +62,8 @@ void DrawGamrOver()
 //---------------------------------
 void FinGameOver()
 {
+	ExitScore();
+
 	// タイトルシーン初期化へ
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;
 }

@@ -46,6 +46,9 @@
     <Filter Include="ソース ファイル\Judgment">
       <UniqueIdentifier>{3d4f5d6b-193a-46a6-a352-3a68636903e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\HUD">
+      <UniqueIdentifier>{d30c0685-cb52-4c2a-8d01-8f22c8d54b2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Main.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="Src\Judgment\Judgment.cpp">
       <Filter>ソース ファイル\Judgment</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HUD\HUD.cpp">
+      <Filter>ソース ファイル\HUD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="Src\Judgment\Judgment.h">
       <Filter>ソース ファイル\Judgment</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HUD\HUD.h">
+      <Filter>ソース ファイル\HUD</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

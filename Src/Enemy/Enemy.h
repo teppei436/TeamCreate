@@ -3,23 +3,26 @@
 #define _ENEMY_H_
 
 // 定義関連-------------------------------------------
-#define ENEMY_SIZE		       (128) // エネミーの縦横サイズ
-#define ENEMY_GRAPH_NUM	       (8)   // エネミーの画像枚数
-#define ENEMY_GRAPH_X	       (4)	 // エネミーの画像枚数(横)
-#define ENEMY_GRAPH_Y          (2)	 // エネミーの画像枚数(縦)
-#define ENEMY_BULLET_SIZE      (24)  // バレットの縦横サイズ
-#define ENEMY_BULLET_GRAPH_NUM (8)   // バレットの画像枚数
-#define ENEMY_BULLET_GRAPH_X   (4)	 // バレットの画像枚数(横)
-#define ENEMY_BULLET_GRAPH_Y   (2)	 // バレットの画像枚数(縦)
-#define ANIM_ENEMY_COUNT       (10)  // このカウント分待って次の画像へ
+#define ENEMY_SIZE		        (128) // エネミーの縦横サイズ
+#define ENEMY_GRAPH_NUM	        (8)   // エネミーの画像枚数
+#define ENEMY_GRAPH_X	        (4)	  // エネミーの画像枚数(横)
+#define ENEMY_GRAPH_Y           (2)	  // エネミーの画像枚数(縦)
+#define ENEMY_BULLET_SIZE       (24)  // バレットの縦横サイズ
+#define ENEMY_BULLET_GRAPH_NUM  (8)   // バレットの画像枚数
+#define ENEMY_BULLET_GRAPH_X    (4)	  // バレットの画像枚数(横)
+#define ENEMY_BULLET_GRAPH_Y    (2)	  // バレットの画像枚数(縦)
+#define ANIM_ENEMY_COUNT        (10)  // このカウント分待って次の画像へ
+#define ANIM_ENEMY_BULLET_COUNT (30)  // このカウント分待って次の画像へ
 
 static const char ENEMY_PATH[]        = "Data/Character/Enemy.png";
 static const char ENEMY_BULLET_PATH[] = "Data/Character/EnemyBullet.png";
 
+extern int Enemy_move_pattern;
+
 // エネミーの情報
 enum EnemyInfo {
 	ENEMY_INIT_X = 650, // 初期X座標
-	ENEMY_INIT_Y = 80, // 初期Y座標
+	ENEMY_INIT_Y = 80,  // 初期Y座標
 	ENEMY_H      = 128, // 縦幅
 	ENEMY_W      = 128, // 横幅
 	ENEMY_RADIUS = 64,  // 半径
@@ -35,7 +38,7 @@ enum {
 enum GragonEnemyBulletInfo {
 	ENEMY_BULLET_MAX_NUM  = 100, // 最大数（ハンドルの数）
 	ENEMY_BULLET_INIT_X   = 650, // 初期X座標
-	ENEMY_BULLET_INIT_Y   = 20, // 初期Y座標
+	ENEMY_BULLET_INIT_Y   = 20,  // 初期Y座標
 	ENEMY_BULLET_H        = 24,  // 縦幅
 	ENEMY_BULLET_W        = 24,  // 横幅
 	ENEMY_BULLET_RADIUS   = 12,  // 半径

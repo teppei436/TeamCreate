@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "SceneClear.h"
 #include "../Input/Input.h"
+#include "../Score/Score.h"
 
 // クリア背景画像のパス
 #define BG_CLEAR_PATH "Data/Background/BgClear.png"
@@ -55,6 +56,8 @@ void DrawClear()
 {
 	// クリア背景画像の描画
 	DrawGraph(0, 0, bgClearHandle, true);
+
+	DrawScore();
 }
 
 //---------------------------------
@@ -67,6 +70,8 @@ void FinClear()
 
 	// 効果音破棄
 	DeleteSoundMem(ClearBGMSoundHndl);
+
+	ExitScore();
 
 	// タイトルシーン初期化へ
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;

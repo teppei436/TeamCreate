@@ -4,19 +4,20 @@
 
 // 定義関連-------------------------------------------
 
-#define PERSON_SIZE	      (64) // 縦横サイズ
-#define PERSON_GRAPH_NUM  (20) // 画像枚数
+#define PERSON_SIZE	      (128) // 縦横サイズ
+#define PERSON_GRAPH_NUM  (15) // 画像枚数
 #define PERSON_GRAPH_X	  (5)  // 画像枚数(横)
-#define PERSON_GRAPH_Y	  (4)  // 画像枚数(縦)
+#define PERSON_GRAPH_Y	  (3)  // 画像枚数(縦)
 #define ANIM_PERSON_COUNT (8)  // このカウント分待って次の画像へ
 
-static const char PERSON_PATH[]         = "Data/Character/Person.png";
+static const char PERSON_PATH[]        = "Data/Character/Person.png";
 static const char PERSON_DAMAGE_PATH[] = "Data/Character/Person_damage.png";
 
-// プレイヤーの進行方向
+// 体力の状況
 enum {
-	DIR_LEFT_PERSON,  // 左方向
-	DIR_RIGHT_PERSON, // 右方向
+	DAMAGE1,
+	DAMAGE2,
+	DAMAGE3,
 };
 
 // プレイヤーの情報
@@ -27,10 +28,10 @@ enum PersonInfo
 	PERSON_SPD_FAST = 4,   // 移動速め
 	PERSON_SPD      = 3,   // 移動通常
 	PERSON_SPD_SLOW = 1,   // 移動遅め
-	PERSON_H        = 64,  // 縦幅
-	PERSON_W        = 32,  // 横幅
-	PERSON_RADIUS   = 32,  // 半径
-	PERSON_HP       = 10,  // HP
+	PERSON_H        = 128, // 縦幅
+	PERSON_W        = 128, // 横幅
+	PERSON_RADIUS   = 64,  // 半径
+	PERSON_HP       = 5,   // HP
 };
 
 // プレイヤーデータの構造体
