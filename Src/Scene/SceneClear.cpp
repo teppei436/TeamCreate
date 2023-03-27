@@ -8,7 +8,7 @@
 #define BG_CLEAR_PATH "Data/Background/BgClear.png"
 
 // BGMファイルパス
-#define CLEAR_BGM_PATH "Data/Sound/BGM/ClearBGM.mp3"
+#define CLEAR_BGM_PATH "Data/Sound/BGM/CLEAR_BGM.mp3"
 
 // サウンド関連
 int ClearBGMSoundHndl = 0;

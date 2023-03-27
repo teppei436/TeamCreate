@@ -5,12 +5,12 @@
 // 定義関連-------------------------------------------
 
 #define PERSON_SIZE	      (64) // 縦横サイズ
-#define PERSON_GRAPH_NUM  (20) // 画像枚数
+#define PERSON_GRAPH_NUM  (15) // 画像枚数
 #define PERSON_GRAPH_X	  (5)  // 画像枚数(横)
-#define PERSON_GRAPH_Y	  (4)  // 画像枚数(縦)
+#define PERSON_GRAPH_Y	  (3)  // 画像枚数(縦)
 #define ANIM_PERSON_COUNT (8)  // このカウント分待って次の画像へ
 
-static const char PERSON_PATH[]         = "Data/Character/Person.png";
+static const char PERSON_PATH[]        = "Data/Character/Person.png";
 static const char PERSON_DAMAGE_PATH[] = "Data/Character/Person_damage.png";
 
 // プレイヤーの進行方向
@@ -30,7 +30,7 @@ enum PersonInfo
 	PERSON_H        = 64,  // 縦幅
 	PERSON_W        = 32,  // 横幅
 	PERSON_RADIUS   = 32,  // 半径
-	PERSON_HP       = 10,  // HP
+	PERSON_HP       = 5,   // HP
 };
 
 // プレイヤーデータの構造体

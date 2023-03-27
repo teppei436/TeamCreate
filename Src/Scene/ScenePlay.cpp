@@ -1,27 +1,29 @@
 
 #include "DxLib.h"
-#include "../Common/Common.h"
-#include "../Effect/Effect.h"
-#include "../Enemy/Enemy.h"
-#include "../Judgment/Judgment.h"
-#include "../Person/Person.h"
-#include "../Player/Player.h"
 #include "Scene.h"
 #include "SceneClear.h"
 #include "SceneGameOver.h"
 #include "ScenePlay.h"
 #include "SceneTitle.h"
+#include "../Common/Common.h"
+#include "../Effect/Effect.h"
+#include "../Enemy/Enemy.h"
+#include "../HUD/HUD.h"
+#include "../Judgment/Judgment.h"
+#include "../Person/Person.h"
+#include "../Player/Player.h"
 #include "../Score/Score.h"
 
 // BGMƒtƒ@ƒCƒ‹ƒpƒX
-#define PLAY_BGM_PATH "Data/Sound/BGM/PlayBGM.mp3"
+#define PLAY_BGM_PATH "Data/Sound/BGM/PLAY_BGM.mp3"
+
 
 // ƒTƒEƒ“ƒhŠÖ˜A
 int PlayBGMSoundHndl = 0;
 
 // ”wŒiŠÖ˜A
-int bgHandle[2] = { 0 }; //”wŒi‰æ‘œƒnƒ“ƒhƒ‹
-int bgX[2] = { 0 };      //”wŒi‰æ‘œXÀ•W
+int BgHndl[2] = { 0 };
+int BgX[2]    = { 0 };
 
 //---------------------------------
 //		‰Šú‰»ˆ—
@@ -34,15 +36,16 @@ void InitPlay()
 	// ”wŒi‰Šú‰»
 	for (int i = 0; i < 2; i++)
 	{
-		bgHandle[i] = LoadGraph(BG_PATH);
+		BgHndl[i] = LoadGraph(BG_PATH);
 	}
 	//”wŒi‰ŠúÀ•Wİ’è
-	bgX[0] = 0;
-	bgX[1] = -WINDOW_WIDTH;
-	
+	BgX[0] = 0;
+	BgX[1] = -WINDOW_WIDTH;
+
 	InitEffect();
 	InitEnemy();
 	LoadEnemyGraph();
+	InitHUD();
 	InitJudgment();
 	InitPerson();
 	LoadPersonGraph();
@@ -67,28 +70,30 @@ void InitPlay()
 void StepPlay()
 {
 	//”wŒi‚ÌˆÚ“®ˆ—
-	for (int i = 0; i < 2; i++)
-	{
-		bgX[i] +=3;
+	for (int i = 0; i < 2; i++) {
+		BgX[i] -= 1;
 	}
-	//”wŒi‚ª‰æ–ÊŠO‚É‚Í‚İo‚µ‚½‚Ìˆ—
-	for (int i = 0; i < 2; i++)
-	{
-		//“Y‚¦š‚Ì‰æ‘œ‚ª‚Í‚İo‚½
-		if (bgX[i] > WINDOW_WIDTH)
-		{
-			//ã‚É–ß‚·‰æ‘œ‚Ì“Y‚¦š
-			int upIndex = i == 0 ? 1 : 0;
-			//‚à‚¤ˆê‚Â‚Ì‰æ‘œ‚æ‚èã‚É–ß‚·
-			bgX[i] = bgX[upIndex] - WINDOW_WIDTH;
 
+	//”wŒi‚ª‰º‚É‚Í‚İo‚½‚Ìˆ—
+	for (int i = 0; i < 2; i++) {
+		//“Y‚¦š‚Ì‰æ‘œ‚ª‚Í‚İo‚½
+		if (BgX[i] + WINDOW_WIDTH < 0) {
+			//ã‚É–ß‚·‰æ‘œ‚Ì“Y‚¦š•Ï”
+			int upIndex = 0;
+
+			//‚Í‚İo‚½‰æ‘œ‚ª“Y‚¦š0”Ô‚È‚ç
+			if (i == 0)
+				upIndex = 1; //ã‚É–ß‚·‚Ì‚Í“Y‚¦š1
+
+			//ã‚É–ß‚·i‚à‚¤ˆê‚Â‚Ì‰æ‘œ‚æ‚è
+			BgX[i] = BgX[upIndex] + WINDOW_WIDTH;
 		}
 	}
-
-
+	
 
 	StepEffect();
 	StepEnemy();
+	StepHUD();
 	StepJudgment();
 	StepPerson();
 	StepPlayer();
@@ -99,7 +104,7 @@ void StepPlay()
 	bool isClear = false;
 
 	// ƒNƒŠƒA‚µ‚½‚È‚ç
-	if (0) {
+	if (Enemy_move_pattern == 13) {
 		isClear = true;
 	}
 
@@ -109,6 +114,7 @@ void StepPlay()
 
 		// ƒTƒEƒ“ƒh
 		StopSoundMem(PlayBGMSoundHndl);
+
 	}
 
 	//==========================
@@ -126,6 +132,7 @@ void StepPlay()
 
 		// ƒTƒEƒ“ƒh
 		StopSoundMem(PlayBGMSoundHndl);
+	
 	}
 }
 
@@ -135,19 +142,18 @@ void StepPlay()
 void DrawPlay()
 {
 	// ”wŒi‚ªˆê”ÔŒã‚ë‚É•`‰æ
+	//”wŒi‚ğˆê”ÔÅ‰‚É•`‚­
 	for (int i = 0; i < 2; i++)
-	{
-		DrawGraph(bgX[i],0, bgHandle[i], true);
-	}
-	
+		DrawGraph(BgX[i], 0, BgHndl[i], true);
 	
 	DrawEnemy();
 	DrawPerson();
 	DrawPlayer();
 	DrawScore();
 
-	// ƒGƒtƒFƒNƒg‚ªˆê”Ôè‘O‚É•`‰æ
+	// ˆê”Ôè‘O‚É•`‰æ
 	DrawEffect();
+	DrawHUD();
 }
 
 //---------------------------------
@@ -156,6 +162,7 @@ void DrawPlay()
 void FinPlay()
 {
 	FinEnemy();
+	FinHUD();
 	FinJudgment();
 	FinPerson();
 	FinPlayer();
@@ -163,12 +170,13 @@ void FinPlay()
 
 	// Œø‰Ê‰¹”jŠü
 	DeleteSoundMem(PlayBGMSoundHndl);
+	
 
-	// ”wŒi”jŠü
-	/*if (bgHandle[0] == -1) {
-		DeleteGraph(bgHandle[0]);
-		bgHandle[0] = -1;
-	}*/
+	// ”wŒi‰æ‘œ”jŠü
+	for (int i = 0; i < 2; i++)
+	{
+		DeleteGraph(BgHndl[i]);
+	}
 
 	 //‚à‚µ€‚ñ‚¾‚½‚ß‚ÉŒãˆ—‚Ö—ˆ‚½‚È‚ç
 	if (!g_personData.isAlive) {

@@ -9,6 +9,15 @@
 
 PersonData g_personData;
 
+// 移動パターン
+int Person_move_pattern;
+
+// 移動速度
+float PersonSpd;
+
+// 時間
+float Person_time;
+
 //---------------------------------
 //		初期化処理
 //---------------------------------
@@ -21,6 +30,15 @@ void InitPerson()
 	g_personData.animCnt  = 0;
 	g_personData.isAlive  = true;
 	g_personData.isDamage = false;
+
+	// 移動パターン初期化
+	Person_move_pattern = 1;
+
+	// 移動速度初期化
+	PersonSpd = ENEMY_SPD;
+
+	// 時間初期化
+	Person_time = 0;
 }
 
 //---------------------------------
@@ -55,6 +73,65 @@ void LoadPersonGraph()
 //---------------------------------
 void StepPerson()
 {
+	// 時間更新
+	Person_time += 1.0f / FRAME_RATE;
+
+	// 移動パターン
+	switch (Person_move_pattern) {
+
+	case 1:
+
+		if (Person_time >= 7.0f && Person_time <= 8.0f) {
+			// パターン移動
+			Person_move_pattern = 2;
+		}
+
+		if (Person_time >= 22.0f && Person_time <= 23.0f) {
+			// パターン移動
+			Person_move_pattern = 3;
+		}
+
+		break;
+
+	case 2:
+
+		if (g_personData.pos.x > 480) {
+			g_personData.pos.x = g_personData.pos.x - 0.6f;
+		}
+		else {
+			// パターン移動
+			Person_move_pattern = 1;
+		}
+
+		break;
+
+	case 3:
+
+		if (g_personData.pos.x < 880) {
+			g_personData.pos.x = g_personData.pos.x + 0.6f;
+		}
+		else {
+			// パターン移動
+			Person_move_pattern = 4;
+		}
+
+		break;
+
+	case 4:
+
+		if (g_personData.pos.x > PERSON_INIT_X) {
+			g_personData.pos.x -= 0.6f;
+		}
+		else {
+			// パターン移動
+			Person_move_pattern = 5;
+		}
+
+		break;
+
+	default:
+		break;
+	}
 	// アニメーションのカウント更新
 	g_personData.animCnt++;
 

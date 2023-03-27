@@ -8,7 +8,7 @@
 #define BG_TITLE_PATH "Data/Background/BgTitle.png"
 
 // 効果音ファイルパス
-#define TITLE_BGM_PATH "Data/Sound/BGM/TitleBGM.mp3"
+#define TITLE_BGM_PATH "Data/Sound/BGM/TITLE_BGM.mp3"
 
 // サウンド関連
 int TitleBGMSoundHndl = 0;

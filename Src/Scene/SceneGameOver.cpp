@@ -4,11 +4,12 @@
 #include "SceneGameOver.h"
 #include "../Input/Input.h"
 
+
 // ゲームオーバー背景画像のパス
 #define BG_GAMEOVER_PATH "Data/Background/BgGameOver.png"
 
 // BGMファイルパス
-#define GAMEOVER_BGM_PATH "Data/Sound/BGM/GameOverBGM.mp3"
+#define GAMEOVER_BGM_PATH "Data/Sound/BGM/GAMEOVER_BGM.mp3"
 
 // サウンド関連
 int GameOverBGMSoundHndl = 0;

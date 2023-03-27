@@ -8,8 +8,16 @@
 #include "../Player/Player.h"
 #include "../Score/Score.h"
 
+// SEファイルパス
+#define DAMEGE_SE_PATH "Data/Sound/SE/damage.wav"
+#define DEFENSE_SE_PATH "Data/Sound/SE/defense.wav"
+
+
+
 // サウンド関連
 int DamageSESoundHndl;
+int DefenseSESoundHndl;
+
 
 // ダメージインターバル
 int DamageInterval;
@@ -24,9 +32,12 @@ void InitJudgment()
 
 	// SE初期化
 	DamageSESoundHndl = 0;
+	DefenseSESoundHndl = 0;
 
 	// SE読み込み
-	DamageSESoundHndl = LoadSoundMem(DAMAGE_SE_PATH);
+	DamageSESoundHndl = LoadSoundMem(DAMEGE_SE_PATH);
+	DefenseSESoundHndl = LoadSoundMem(DEFENSE_SE_PATH);
+	
 }
 
 //---------------------------------
@@ -55,10 +66,12 @@ void StepJudgment()
 			g_EnemyBulletData[weapon_index].isUse = false;
 
 			AddScore(100);
+			
 
 			if (DamageInterval > DAMAGE_INTERVAL) {
+				
 				// サウンド
-				//PlaySoundMem(DamageSESoundHndl, DX_PLAYTYPE_BACK, true);
+				PlaySoundMem(DefenseSESoundHndl, DX_PLAYTYPE_BACK, true);
 
 				// ダメージインターバルをリセット
 				DamageInterval = 0;
@@ -91,7 +104,7 @@ void StepJudgment()
 
 			if (DamageInterval > DAMAGE_INTERVAL) {
 				// サウンド
-				//PlaySoundMem(DamageSESoundHndl, DX_PLAYTYPE_BACK, true);
+				PlaySoundMem(DamageSESoundHndl, DX_PLAYTYPE_BACK, true);
 
 				// ダメージインターバルをリセット
 				DamageInterval = 0;
@@ -107,6 +120,8 @@ void FinJudgment()
 {
 	// 効果音破棄
 	DeleteSoundMem(DamageSESoundHndl);
+	DeleteSoundMem(DefenseSESoundHndl);
+
 }
 
 //---------------------------------

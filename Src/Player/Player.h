@@ -24,9 +24,7 @@ enum PlayerInfo
 {
 	PLAYER_INIT_X   = 640, // ‰ŠúXÀ•W
 	PLAYER_INIT_Y   = 500, // ‰ŠúYÀ•W
-	PLAYER_SPD_FAST = 4,   // ˆÚ“®‘¬‚ß
-	PLAYER_SPD      = 3,   // ˆÚ“®’Êí
-	PLAYER_SPD_SLOW = 1,   // ˆÚ“®’x‚ß
+	PLAYER_SPD      = 4,   // ˆÚ“®’Êí
 	PLAYER_H        = 64,  // c•
 	PLAYER_W        = 32,  // ‰¡•
 	PLAYER_RADIUS   = 32,  // ”¼Œa
