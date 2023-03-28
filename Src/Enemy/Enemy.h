@@ -42,7 +42,7 @@ enum GragonEnemyBulletInfo {
 	ENEMY_BULLET_H        = 24,  // 縦幅
 	ENEMY_BULLET_W        = 24,  // 横幅
 	ENEMY_BULLET_RADIUS   = 12,  // 半径
-	ENEMY_BULLET_INTERVAL = 60,  // 間隔ループ数
+	ENEMY_BULLET_INTERVAL = 50,  // 間隔ループ数
 	ENEMY_BULLET_SPD      = 10,  // 速度
 };
 

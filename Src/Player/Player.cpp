@@ -27,7 +27,6 @@ void FinPlayer()
 {
 	// 画像データの破棄
 	DeleteGraph(g_playerData.hndl);
-	
 }
 
 //---------------------------------
@@ -35,19 +34,20 @@ void FinPlayer()
 //---------------------------------
 void StepPlayer()
 {
+	float playerSpd = 2.1f;
+
 	// キー入力による移動-------------------------
 	// 右移動
 	if (IsKeyDown(KEY_INPUT_RIGHT) == 1) {
 		// 通常スピード
-		g_playerData.pos.x += PLAYER_SPD;
+		g_playerData.pos.x += playerSpd;
 	}
 
 	// 左移動
 	if (IsKeyDown(KEY_INPUT_LEFT) == 1) {
 		// 通常スピード
-		g_playerData.pos.x -= PLAYER_SPD;
+		g_playerData.pos.x -= playerSpd;
 	}
-
 	//---------------------------------------------
 }
 

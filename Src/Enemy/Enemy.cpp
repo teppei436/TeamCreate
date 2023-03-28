@@ -138,7 +138,7 @@ void StepEnemy()
 		else {
 			// 弾を飛ばすために：処理①
 			//発射間隔の時間が経った
-			if (g_EnemyData.bulletInterval > ENEMY_BULLET_INTERVAL - 50) {
+			if (g_EnemyData.bulletInterval > ENEMY_BULLET_INTERVAL - 40) {
 				//ボスの弾情報を先頭から順番に回す
 				for (int i = 0; i < ENEMY_BULLET_MAX_NUM; i++) {
 					//未使用のボスの弾情報があった
@@ -392,9 +392,6 @@ void DrawEnemy()
 			DrawRotaGraph((int)g_EnemyBulletData[index].pos.x, (int)g_EnemyBulletData[index].pos.y, 1.0, 0.0, g_EnemyBulletData[index].hndl[animEnemyBulletID], TRUE);
 		}
 	}
-
-	//unsigned int color = GetColor(255, 0, 255);
-	//DrawFormatString(10, 70, color, "経過時間[%.2f]", Enemy_time);
 }
 
 //---------------------------------

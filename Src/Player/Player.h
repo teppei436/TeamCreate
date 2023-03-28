@@ -18,7 +18,6 @@ enum PlayerInfo
 {
 	PLAYER_INIT_X   = 640, // ‰ŠúXÀ•W
 	PLAYER_INIT_Y   = 500, // ‰ŠúYÀ•W
-	PLAYER_SPD      = 3,   // ˆÚ“®’Êí
 	PLAYER_H        = 128, // c•
 	PLAYER_W        = 64,  // ‰¡•
 	PLAYER_RADIUS   = 64,  // ”¼Œa
